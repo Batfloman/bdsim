@@ -177,7 +177,7 @@ G4VParticleChange* BDSLaserCumulativeCompton::PostStepDoIt(const G4Track& track,
       G4double crossSection = comptonEngine->CrossSection(photonEnergyLorentz,partID);
 
       G4double stepTime = ((particleTimePostStepGlobal-particleTimePreStepGlobal)*particleGamma)/100.;//divide by 100 for the 100 steps taken
-      G4double cumulativeProbability = 1.0 - std::exp(-1.0*crossSection*photonFluxSum*stepTime);
+      G4double cumulativeProbability = -std::expm1(-1.0*crossSection*photonFluxSum*stepTime);
       G4double secondaryStepPosition;
 
       if(photonFluxSum == 0)
